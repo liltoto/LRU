@@ -20,6 +20,7 @@ LRU is using [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Refer
 - [Map](#map)
 - [Filter](#filter)
 - [Reduce](#reduce)
+- [For..of](#for..of)
 - [Clear](#clear)
 
 ## Usage
@@ -121,6 +122,14 @@ Executes a reducer function (that you provide) on each element of the array, res
 lru.reduce((previousValue, currentValue, currentIndex) => {
   // code
 }, initialValue);
+```
+
+## For..of
+
+```typescript
+for (const [key, value] of lru) {
+  // code
+}
 ```
 
 ## Clear
