@@ -27,6 +27,7 @@ LRU is using [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Refer
 Import LRU and create new LRU object
 
 ```typescript
+import { LRU } from "https://deno.land/x/lru/mod.ts";
 import LRU from "https://deno.land/x/lru/mod.ts";
 
 const lru = new LRU(500); // define your max amount of entries, in this example is 500
