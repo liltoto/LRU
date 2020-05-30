@@ -50,6 +50,19 @@ Deno.test("Map to array", () => {
   assertEquals(temp, [{ hello: "world" }, { foo: "bar" }]);
 });
 
+Deno.test("Filter cache", () => {
+  const temp = lru.filter(([key, value]) => value === "bar");
+  assertEquals(temp, [["foo", "bar"]]);
+});
+
+Deno.test("Reduce cache", () => {
+  const temp = lru.reduce((prev, current) => {
+    if (current[1] === "bar") prev.push(current[1]);
+    return prev;
+  }, []);
+  assertEquals(temp, ["bar"]);
+});
+
 Deno.test("Clear everything", () => {
   lru.clear();
   assertEquals(lru.size, 0);

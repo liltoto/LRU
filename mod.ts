@@ -10,7 +10,7 @@ class LRU {
   /**
    * LRU map String:any
    */
-  private cache: Map<string, any>;
+  private cache: Map<string, unknown>;
 
   /**
    * Constructor method for a new LRU
@@ -32,7 +32,8 @@ class LRU {
   }
 
   /**
-   * Return amount of entries in the cache
+   * Amount of entries in the cache
+   * @returns current size of cache
    */
   public get size(): number {
     return this.cache.size;
@@ -42,7 +43,7 @@ class LRU {
    * Get entries as object
    * @returns Object with all entries
    */
-  public get object(): { [key: string]: any } {
+  public get object(): { [key: string]: unknown } {
     return Object.fromEntries(this.cache);
   }
 
@@ -50,7 +51,7 @@ class LRU {
    * Get all values from cache
    * @returns Array of all values
    */
-  public get values(): Array<any> {
+  public get values(): Array<unknown> {
     return Array.from(this.cache.values());
   }
 
@@ -68,8 +69,12 @@ class LRU {
    * @param thisArg Value to use as this when executing callback
    */
   public forEach(
-    callbackfn: (value: any, key: string, map: Map<string, any>) => void,
-    thisArg?: any,
+    callbackfn: (
+      value: unknown,
+      key: string,
+      map: Map<string, unknown>
+    ) => void,
+    thisArg?: any
   ): void {
     return this.cache.forEach(callbackfn, thisArg);
   }
@@ -80,10 +85,47 @@ class LRU {
    * @param thisArg Value to use as this when executing callback
    */
   public map(
-    callbackfn: (value: any, index: number, array: [string, any][]) => any,
-    thisArg?: any,
-  ) {
+    callbackfn: (
+      value: [string, unknown],
+      index: number,
+      array: [string, unknown][]
+    ) => unknown,
+    thisArg?: any
+  ): unknown[] {
     return Array.from(this.cache).map(callbackfn, thisArg);
+  }
+
+  /**
+   * Creates a new array with all elements that pass the test implemented by the provided function
+   * @param callbackfn Function is a predicate, to test each element of the array. Return true to keep the element, false otherwise
+   * @param thisArg Value to use as this when executing callback.
+   */
+  public filter(
+    callbackfn: (
+      value: [string, unknown],
+      index: number,
+      array: [string, unknown][]
+    ) => unknown,
+    thisArg?: any
+  ): [string, unknown][] {
+    return Array.from(this.cache).filter(callbackfn, thisArg);
+  }
+
+  /**
+   * Executes a reducer function (that you provide) on each element of the array, resulting in single output value
+   * @param callbackfn A function to execute on each element in the array (except for the first, if no initialValue is supplied)
+   * @param initialValue A value to use as the first argument to the first call of the callback. If no initialValue is supplied, the first element in the array will be used as the initial accumulator value and skipped as currentValue. Calling reduce() on an empty array without an initialValue will throw a TypeError.
+   */
+  public reduce(
+    callbackfn: (
+      previousValue: [string, unknown],
+      currentValue: [string, unknown],
+      currentIndex: number,
+      array: [string, unknown][]
+    ) => any,
+    initialValue?: any
+  ): unknown {
+    return Array.from(this.cache).reduce(callbackfn, initialValue);
   }
 
   /**
@@ -107,7 +149,7 @@ class LRU {
    * @param key The key of the entry to return from the cache
    * @returns the value associated to the input key or undefined
    */
-  public get(key: string): any | undefined {
+  public get(key: string): unknown | undefined {
     const item = this.cache.get(key);
     if (!item) return undefined;
     this.remove(key);
@@ -129,7 +171,7 @@ class LRU {
    * @param key new entry key
    * @param value new entry value
    */
-  public set(key: string, value: any): void {
+  public set(key: string, value: unknown): void {
     if (this.has(key)) this.remove(key);
     else if (this.size === this.max) this.remove(this._first());
     this.cache.set(key, value);
