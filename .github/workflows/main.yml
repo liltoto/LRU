@@ -1,0 +1,29 @@
+name: Test
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        deno-version: [1.0.0, 1.0.1, 1.0.2, 1.0.3]
+
+    steps:
+      - name: Git Checkout Module
+        uses: actions/checkout@v2
+      - name: Use Deno Version ${{ matrix.deno-version }}
+        uses: denolib/setup-deno@master
+        with:
+          deno-version: ${{ matrix.deno-version }}
+      - name: Lint Module
+        run: deno fmt --check
+      - name: Build Module
+        run: deno run --reload mod.ts
+      - name: Test Module
+        run: deno test --allow-none
