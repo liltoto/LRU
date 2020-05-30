@@ -72,9 +72,9 @@ class LRU {
     callbackfn: (
       value: unknown,
       key: string,
-      map: Map<string, unknown>
+      map: Map<string, unknown>,
     ) => void,
-    thisArg?: any
+    thisArg?: any,
   ): void {
     return this.cache.forEach(callbackfn, thisArg);
   }
@@ -88,9 +88,9 @@ class LRU {
     callbackfn: (
       value: [string, unknown],
       index: number,
-      array: [string, unknown][]
+      array: [string, unknown][],
     ) => unknown,
-    thisArg?: any
+    thisArg?: any,
   ): unknown[] {
     return Array.from(this.cache).map(callbackfn, thisArg);
   }
@@ -104,9 +104,9 @@ class LRU {
     callbackfn: (
       value: [string, unknown],
       index: number,
-      array: [string, unknown][]
+      array: [string, unknown][],
     ) => unknown,
-    thisArg?: any
+    thisArg?: any,
   ): [string, unknown][] {
     return Array.from(this.cache).filter(callbackfn, thisArg);
   }
@@ -121,9 +121,9 @@ class LRU {
       previousValue: [string, unknown],
       currentValue: [string, unknown],
       currentIndex: number,
-      array: [string, unknown][]
+      array: [string, unknown][],
     ) => any,
-    initialValue?: any
+    initialValue?: any,
   ): unknown {
     return Array.from(this.cache).reduce(callbackfn, initialValue);
   }
