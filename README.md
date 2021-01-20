@@ -4,6 +4,7 @@
 ![](https://img.shields.io/github/size/liltoto/LRU/mod.ts?style=for-the-badge)
 ![](https://img.shields.io/github/languages/top/liltoto/lru?style=for-the-badge)
 ![](https://img.shields.io/github/license/liltoto/lru?style=for-the-badge)
+[![nest badge](https://nest.land/badge.svg)](https://nest.land/package/LRU)
 
 LRU is using [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) as underlying cache.
 
@@ -28,8 +29,13 @@ LRU is using [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Refer
 Import LRU and create new LRU object
 
 ```typescript
-import { LRU } from "https://deno.land/x/lru/mod.ts";
-import LRU from "https://deno.land/x/lru/mod.ts";
+// From deno.land
+import { LRU } from "https://deno.land/x/lru@1.0.1/mod.ts";
+import LRU from "https://deno.land/x/lru@1.0.1/mod.ts";
+
+//From nest.land
+import { LRU } from "https://x.nest.land/LRU@1.0.1/mod.ts";
+import LRU from "https://x.nest.land/LRU@1.0.1/mod.ts";
 
 const lru = new LRU(500); // define your max amount of entries, in this example is 500
 ```
