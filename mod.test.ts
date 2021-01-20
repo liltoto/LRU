@@ -1,4 +1,4 @@
-import { assertEquals } from "https://deno.land/std@v0.54.0/testing/asserts.ts";
+import { assertEquals } from "https://deno.land/std@0.83.0/testing/asserts.ts";
 import LRU from "./mod.ts";
 
 const lru = new LRU(10);

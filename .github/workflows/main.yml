@@ -12,15 +12,15 @@ jobs:
 
     strategy:
       matrix:
-        deno-version: [1.0.0, 1.0.1, 1.0.2, 1.0.3]
+        deno: ["v1.5.x", "v1.6.x"]
 
     steps:
       - name: Git Checkout Module
         uses: actions/checkout@v2
-      - name: Use Deno Version ${{ matrix.deno-version }}
-        uses: denolib/setup-deno@master
+      - name: Use Deno Version ${{ matrix.deno }}
+        uses: denolib/setup-deno@v2
         with:
-          deno-version: ${{ matrix.deno-version }}
+          deno-version: ${{ matrix.deno }}
       - name: Lint Module
         run: deno fmt --check
       - name: Build Module

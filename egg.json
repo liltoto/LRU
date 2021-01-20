@@ -1,0 +1,20 @@
+{
+  "$schema": "https://x.nest.land/eggs@0.3.4/src/schema.json",
+  "name": "LRU",
+  "entry": "./mod.ts",
+  "description": "Simple and powerful LRU cache for Deno",
+  "homepage": "https://github.com/liltoto/LRU",
+  "version": "1.0.1",
+  "files": [
+    "mod.test.ts",
+    "README.md"
+  ],
+  "ignore": [
+    ".git"
+  ],
+  "checkFormat": "deno fmt",
+  "checkTests": "deno test",
+  "checkInstallation": true,
+  "check": true,
+  "unlisted": false
+}
