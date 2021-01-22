@@ -5,27 +5,27 @@ export class LRU {
   /**
    * Capacity limit
    */
-  private max: number;
+  #max: number;
 
   /**
    * LRU map String:any
    */
-  private cache: Map<string, unknown>;
+  #cache: Map<string, unknown>;
 
   /**
    * Constructor method for a new LRU
    * @param max Cache capacity
    */
   constructor(max: number) {
-    this.max = max;
-    this.cache = new Map();
+    this.#max = max;
+    this.#cache = new Map();
   }
 
   /**
    * Use it for..of method
    */
   public [Symbol.iterator]() {
-    const iterator = this.cache[Symbol.iterator]();
+    const iterator = this.#cache[Symbol.iterator]();
     return {
       next: () => iterator.next(),
     };
@@ -36,7 +36,7 @@ export class LRU {
    * @returns current size of cache
    */
   public get size(): number {
-    return this.cache.size;
+    return this.#cache.size;
   }
 
   /**
@@ -44,7 +44,7 @@ export class LRU {
    * @returns Object with all entries
    */
   public get object(): { [key: string]: unknown } {
-    return Object.fromEntries(this.cache);
+    return Object.fromEntries(this.#cache);
   }
 
   /**
@@ -52,7 +52,7 @@ export class LRU {
    * @returns Array of all values
    */
   public get values(): Array<unknown> {
-    return Array.from(this.cache.values());
+    return Array.from(this.#cache.values());
   }
 
   /**
@@ -60,7 +60,7 @@ export class LRU {
    * @returns Array of all keys
    */
   public get keys(): Array<string> {
-    return Array.from(this.cache.keys());
+    return Array.from(this.#cache.keys());
   }
 
   /**
@@ -76,7 +76,7 @@ export class LRU {
     ) => void,
     thisArg?: any,
   ): void {
-    return this.cache.forEach(callbackfn, thisArg);
+    return this.#cache.forEach(callbackfn, thisArg);
   }
 
   /**
@@ -92,7 +92,7 @@ export class LRU {
     ) => unknown,
     thisArg?: any,
   ): unknown[] {
-    return Array.from(this.cache).map(callbackfn, thisArg);
+    return Array.from(this.#cache).map(callbackfn, thisArg);
   }
 
   /**
@@ -108,7 +108,7 @@ export class LRU {
     ) => unknown,
     thisArg?: any,
   ): [string, unknown][] {
-    return Array.from(this.cache).filter(callbackfn, thisArg);
+    return Array.from(this.#cache).filter(callbackfn, thisArg);
   }
 
   /**
@@ -125,14 +125,14 @@ export class LRU {
     ) => any,
     initialValue?: any,
   ): unknown {
-    return Array.from(this.cache).reduce(callbackfn, initialValue);
+    return Array.from(this.#cache).reduce(callbackfn, initialValue);
   }
 
   /**
    * Removes all entries in the cache
    */
   public clear(): void {
-    this.cache.clear();
+    this.#cache.clear();
   }
 
   /**
@@ -141,7 +141,7 @@ export class LRU {
    * @returns true if an element with the specified key exists in the cache otherwise false
    */
   public has(key: string): boolean {
-    return this.cache.has(key);
+    return this.#cache.has(key);
   }
 
   /**
@@ -150,10 +150,10 @@ export class LRU {
    * @returns the value associated to the input key or undefined
    */
   public get(key: string): unknown | undefined {
-    const item = this.cache.get(key);
+    const item = this.#cache.get(key);
     if (!item) return undefined;
     this.remove(key);
-    this.cache.set(key, item);
+    this.#cache.set(key, item);
     return item;
   }
 
@@ -162,7 +162,7 @@ export class LRU {
    * @param key key is used to remove from the cache
    */
   public remove(key: string): void {
-    this.cache.delete(key);
+    this.#cache.delete(key);
   }
 
   /**
@@ -173,8 +173,8 @@ export class LRU {
    */
   public set(key: string, value: unknown): void {
     if (this.has(key)) this.remove(key);
-    else if (this.size === this.max) this.remove(this._first());
-    this.cache.set(key, value);
+    else if (this.size === this.#max) this.remove(this._first());
+    this.#cache.set(key, value);
   }
 
   /**
@@ -182,7 +182,7 @@ export class LRU {
    * @returns value of the oldest entry
    */
   private _first() {
-    return this.cache.keys().next().value;
+    return this.#cache.keys().next().value;
   }
 }
 
