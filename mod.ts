@@ -74,7 +74,7 @@ export class LRU<T> {
       key: string,
       map: Map<string, T>,
     ) => void,
-    thisArg?: any,
+    thisArg?: unknown,
   ): void {
     return this.#cache.forEach(callbackfn, thisArg);
   }
@@ -90,7 +90,7 @@ export class LRU<T> {
       index: number,
       array: [string, T][],
     ) => T,
-    thisArg?: any,
+    thisArg?: unknown,
   ): T[] {
     return Array.from(this.#cache).map(callbackfn, thisArg);
   }
@@ -106,7 +106,7 @@ export class LRU<T> {
       index: number,
       array: [string, T][],
     ) => T,
-    thisArg?: any,
+    thisArg?: unknown,
   ): [string, T][] {
     return Array.from(this.#cache).filter(callbackfn, thisArg);
   }
@@ -134,6 +134,7 @@ export class LRU<T> {
     ) => U,
     initialValue: U,
   ): U;
+  // deno-lint-ignore no-explicit-any
   public reduce(callbackfn: any, initialValue?: any): any {
     return Array.from(this.#cache).reduce(callbackfn, initialValue);
   }
