@@ -59,7 +59,7 @@ Deno.test("Reduce cache", () => {
   const temp = lru.reduce((prev, current) => {
     if (current[1] === "bar") prev.push(current[1]);
     return prev;
-  }, []);
+  }, [] as string[]);
   assertEquals(temp, ["bar"]);
 });
 
