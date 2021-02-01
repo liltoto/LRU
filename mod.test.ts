@@ -1,4 +1,4 @@
-import { assertEquals } from "https://deno.land/std@0.83.0/testing/asserts.ts";
+import { assertEquals } from "https://deno.land/std@0.84.0/testing/asserts.ts";
 import LRU from "./mod.ts";
 
 const lru = new LRU(10);
@@ -59,7 +59,7 @@ Deno.test("Reduce cache", () => {
   const temp = lru.reduce((prev, current) => {
     if (current[1] === "bar") prev.push(current[1]);
     return prev;
-  }, []);
+  }, [] as string[]);
   assertEquals(temp, ["bar"]);
 });
 
