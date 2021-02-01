@@ -30,12 +30,12 @@ Import LRU and create new LRU object
 
 ```typescript
 // From deno.land
-import { LRU } from "https://deno.land/x/lru@1.0.1/mod.ts";
-import LRU from "https://deno.land/x/lru@1.0.1/mod.ts";
+import { LRU } from "https://deno.land/x/lru@1.0.2/mod.ts";
+import LRU from "https://deno.land/x/lru@1.0.2/mod.ts";
 
 //From nest.land
-import { LRU } from "https://x.nest.land/LRU@1.0.1/mod.ts";
-import LRU from "https://x.nest.land/LRU@1.0.1/mod.ts";
+import { LRU } from "https://x.nest.land/LRU@1.0.2/mod.ts";
+import LRU from "https://x.nest.land/LRU@1.0.2/mod.ts";
 
 const lru = new LRU(500); // define your max amount of entries, in this example is 500
 ```

@@ -4,14 +4,9 @@
   "entry": "./mod.ts",
   "description": "Simple and powerful LRU cache for Deno",
   "homepage": "https://github.com/liltoto/LRU",
-  "version": "1.0.1",
-  "files": [
-    "mod.test.ts",
-    "README.md"
-  ],
-  "ignore": [
-    ".git"
-  ],
+  "version": "1.0.2",
+  "files": ["mod.test.ts", "README.md"],
+  "ignore": [".git"],
   "checkFormat": "deno fmt",
   "checkTests": "deno test",
   "checkInstallation": true,
